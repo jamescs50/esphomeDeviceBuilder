@@ -1,0 +1,39 @@
+esphome:
+  name: train
+  friendly_name: Train
+
+esp8266:
+  board: esp01_1m
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "wvaeWLBPDvy4mCqcECQq15V97KYea+PcHRks5O+iOcg="
+
+ota:
+  - platform: esphome
+    password: "635145bdefcd7b02aa5d92f0eadc762f"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Esp8266 Fallback Hotspot"
+    password: !secret fallback_password
+
+switch:
+  - platform: gpio
+    name: "Switch"
+    pin: GPIO1
+    
+status_led:
+  pin:
+    number: GPIO13
+    id: led
+    inverted: True
+    
