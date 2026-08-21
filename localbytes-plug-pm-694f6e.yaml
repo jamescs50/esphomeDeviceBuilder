@@ -1,0 +1,17 @@
+substitutions:
+  name: localbytes-plug-pm-694f6e
+  friendly_name: Localbytes Plug PM 694f6e
+packages:
+  localbytes.plug-pm: github://LocalBytes/esphome-localbytes-plug/localbytes-plug-pm.yaml@main
+esphome:
+  name: ${name}
+  name_add_mac_suffix: false
+  friendly_name: ${friendly_name}
+api:
+  encryption:
+    key: sS9kE3gxjf5jjp3mpuMvyUiyE3dK0lNxu8ecosJGHvM=
+
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
