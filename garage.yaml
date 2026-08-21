@@ -1,0 +1,57 @@
+esphome:
+  name: garage
+  friendly_name: Garage
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "pSqBZFmM8TjFIQkeNvwuGjP3r6/6MqvEKfXiWUlSs/o="
+
+ota:
+  - platform: esphome
+    password: "f6b57185e77ae6c208c76593b087070b"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Garage Fallback Hotspot"
+    password: !secret fallback_password
+
+switch:
+  - platform: gpio
+    pin: GPIO32
+    name: "Relay 1"
+  - platform: gpio
+    pin: GPIO33
+    name: "Relay 2"
+  - platform: gpio
+    pin: GPIO25
+    name: "Relay 3"
+  - platform: gpio
+    pin: GPIO26
+    name: "Relay 4"
+
+status_led:
+  pin: GPIO23
+
+
+binary_sensor:
+  - platform: gpio
+    pin: 
+      number: GPIO18
+      mode:
+        input: true
+        pullup: true
+    name: "Test Proximity"
+    device_class: door  
