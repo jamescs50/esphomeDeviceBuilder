@@ -108,3 +108,11 @@ binary_sensor:
         pullup: true
     name: "Switch 2"
     device_class: door
+  - platform: gpio
+    pin: 
+      number: GPIO04
+      mode:
+        input: true
+        pullup: true
+    name: "Switch 3"
+    device_class: door
