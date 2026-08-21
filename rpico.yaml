@@ -26,6 +26,7 @@ wifi:
     ssid: "Rpico Fallback Hotspot"
     password: !secret fallback_password
     
+  use_address: 10.6.6.114
 i2c:
   sda: GPIO20
   scl: GPIO21
