@@ -98,21 +98,21 @@ binary_sensor:
       mode:
         input: true
         pullup: true
-    name: "Switch 1"
-    device_class: door
+    name: "Level 1"
+    device_class: connectivity
   - platform: gpio
     pin: 
       number: GPIO18
       mode:
         input: true
         pullup: true
-    name: "Switch 2"
-    device_class: door
+    name: "Level 2"
+    device_class: connectivity
   - platform: gpio
     pin: 
       number: GPIO04
       mode:
         input: true
         pullup: true
-    name: "Switch 3"
-    device_class: door
+    name: "Light Switch"
+    device_class: connectivity
