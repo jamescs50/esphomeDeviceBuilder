@@ -29,6 +29,7 @@ wifi:
 
     
 
+  use_address: 10.6.7.177
 i2c:
   sda: 15
   scl: 27
