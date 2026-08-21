@@ -116,3 +116,17 @@ binary_sensor:
         pullup: true
     name: "Light Switch"
     device_class: connectivity
+    id: switch_light
+    on_state_change:
+      then:
+        - if:
+            condition:
+              binary_sensor.is_on: switch_light
+            then:
+              - light.turn_on: fireplace_light              
+            else:
+              - light.turn_off: fireplace_light              
+          
+              
+              
+    
