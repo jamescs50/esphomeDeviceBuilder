@@ -1,0 +1,109 @@
+esphome:
+  name: livingroom-fireplace
+  friendly_name: livingroom_fireplace
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: "lAuenw0GOC8fpRDYXfoDwY6gLD2X+i+kX3K7a/8jykc="
+
+ota:
+  - platform: esphome
+    password: "901582a3cdac7ebace13768dc99c63c6"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Livingroom-Fireplace"
+    password: !secret fallback_password
+
+
+select:
+  - platform: template
+    id: heater_state
+    name: Heater
+    icon: mdi:radiator
+    options: 
+      - "Off"
+      - "Normal"
+      - "High"
+    initial_option: "Off"
+    set_action: 
+      then:
+        - if:
+            condition:
+              - lambda: 
+                  'return x == "Off";'
+            then: 
+              - switch.turn_off: heater_low
+              - switch.turn_off: heater_high
+        - if:
+            condition:
+              - lambda: 
+                  'return x == "Normal";'
+            then: 
+              - switch.turn_on: heater_low
+              - switch.turn_off: heater_high
+        - if:
+            condition:
+              - lambda: 
+                  'return x == "High";'
+            then: 
+              - switch.turn_on: heater_low
+              - switch.turn_on: heater_high        
+        - delay: 3s
+        - lambda: 
+            'id(heater_state).publish_state(x);'
+            
+
+light:
+  - platform: binary
+    name: "Fireplace light"
+    icon: mdi:fireplace
+    id: fireplace_light
+    output: fireplace_light_output
+
+switch:
+  - platform: gpio
+    pin: GPIO13
+    id: heater_low
+    inverted: True
+    
+  - platform: gpio
+    pin: GPIO14
+    id: heater_high
+    inverted: True
+
+output:
+  - platform: gpio
+    pin: GPIO16
+    id: fireplace_light_output        
+
+binary_sensor:
+  - platform: gpio
+    pin: 
+      number: GPIO17
+      mode:
+        input: true
+        pullup: true
+    name: "Switch 1"
+    device_class: door
+  - platform: gpio
+    pin: 
+      number: GPIO18
+      mode:
+        input: true
+        pullup: true
+    name: "Switch 2"
+    device_class: door
