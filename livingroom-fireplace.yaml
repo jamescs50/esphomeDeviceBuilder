@@ -121,7 +121,7 @@ binary_sensor:
       then:
         - if:
             condition:
-              binary_sensor.is_on: switch_light
+              binary_sensor.is_off: switch_light
             then:
               - light.turn_on: fireplace_light              
             else:
