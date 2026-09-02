@@ -1,0 +1,30 @@
+# Board: ESP32 DevKit V1 (Espressif)
+# Definition: definitions/boards/esp32-devkit-v1/manifest.yaml
+
+esphome:
+  name: modbus
+  friendly_name: modbus
+
+esp32:
+  variant: esp32
+  flash_size: 4MB
+  framework:
+    type: esp-idf
+
+logger:
+
+api:
+  encryption:
+    key: "cav+DZKq2SXuA67fGZ3syiYuWSKhNyoESD7SJhcr3RM="
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: modbus Fallback Hotspot
+    password: "9gsLQKx2JS9P"
+
+captive_portal:
