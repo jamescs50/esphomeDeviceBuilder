@@ -25,4 +25,6 @@ wifi:
   ap:
     ssid: 4Relays Test Fallback Hotspot
     password: !secret fallback_password
+
+    
 captive_portal:
