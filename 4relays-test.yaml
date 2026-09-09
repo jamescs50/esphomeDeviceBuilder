@@ -25,13 +25,14 @@ wifi:
   ap:
     ssid: 4Relays Test Fallback Hotspot
     password: !secret fallback_password
-
     
-  use_address: 10.6.5.132
-output:
+switch:
   - platform: gpio
     pin: GPIO26
     id: relay_1
+    name: "Relay 1"
   - platform: gpio
     pin: GPIO27
     id: relay_2
+    name: "Relay 2"
+
