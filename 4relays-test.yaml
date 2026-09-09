@@ -1,0 +1,29 @@
+# Board: Generic ESP32 Board (Generic)
+# Definition: definitions/boards/generic-esp32/manifest.yaml
+
+esphome:
+  name: 4relays-test
+  friendly_name: 4Relays Test
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+
+api:
+  encryption:
+    key: "Y58R4YzTc79ZSQagg20cKHcfDSJMBUqtqTMzN09NqMU="
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: 4Relays Test Fallback Hotspot
+    password: "NUWDORZvVaFV"
+
+captive_portal:
