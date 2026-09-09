@@ -27,4 +27,10 @@ wifi:
     password: !secret fallback_password
 
     
-captive_portal:
+output:
+  - platform: gpio
+    pin: GPIO26
+    id: relay_1
+  - platform: gpio
+    pin: GPIO27
+    id: relay_2
