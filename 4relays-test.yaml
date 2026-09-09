@@ -27,6 +27,7 @@ wifi:
     password: !secret fallback_password
 
     
+  use_address: 10.6.5.132
 output:
   - platform: gpio
     pin: GPIO26
