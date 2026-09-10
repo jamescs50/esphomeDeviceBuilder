@@ -24,7 +24,7 @@ wifi:
 
   # Enable fallback hotspot in case wifi connection fails
   ap:
-    ssid: "Rpico Fallback Hotspot"
+    ssid: "weather-station Fallback Hotspot"
     password: !secret fallback_password
     
   #use_address: 10.6.6.114
