@@ -27,6 +27,7 @@ wifi:
     ssid: "weather-station Fallback Hotspot"
     password: !secret fallback_password
     
+  use_address: 10.6.7.163
   #use_address: 10.6.6.114
 #i2c:
 #  sda: GPIO20
