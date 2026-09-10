@@ -28,144 +28,144 @@ wifi:
     password: !secret fallback_password
     
   #use_address: 10.6.6.114
-i2c:
-  sda: GPIO20
-  scl: GPIO21
-  scan: true
-  id: bus_0
-  frequency: 800kHz
-  timeout: 10ms
-
-sensor:
-  - platform: adc
-    pin: TEMPERATURE
-    name: "Core Temperature"
-    unit_of_measurement: "°C"
-    filters:
-      - lambda: return 27 - (x - 0.706f) / 0.001721f;
-
-  - platform: bme280_i2c
-    temperature:
-      name: "BME280 Temperature"
-    pressure:
-      name: "BME280 Pressure"
-    humidity:
-      name: "BME280 Humidity"    
-
-  - platform: adc
-    name: "Source for resistance"
-    id: adc0
-    pin: GPIO26
-    update_interval: 10s
-  - platform: resistance
-    name: Resistance Sensor    
-    id: wv_resistance    
-    sensor: adc0
-    configuration: DOWNSTREAM
-    resistor: 10.0kOhm
-  - platform: template
-    icon: mdi:windsock
-    name: "Wind Direction"
-    update_interval: 10s
-    id: wind_direction
-    lambda: |-
-      if (id(wv_resistance).state > 200000)
-      {
-        return -1;     //error state = probably disconnected
-      }
-      else if (id(wv_resistance).state > 90000)
-      {
-        return 270;
-      }
-      else if(id(wv_resistance).state > 55000)
-      {
-        return 315;
-      }
-      else if(id(wv_resistance).state > 40000)
-      {
-        return 292.5;
-      }
-      else if(id(wv_resistance).state > 30000)
-      {
-        return 0;
-      }
-      else if(id(wv_resistance).state > 20000)
-      {
-        return 337.5;
-      }
-      else if(id(wv_resistance).state > 15000)
-      {
-        return 225;
-      }
-      else if(id(wv_resistance).state > 10000)
-      {
-        return 247.5;
-      }
-      else if(id(wv_resistance).state > 8000)
-      {
-        return 45;
-      }
-      else if(id(wv_resistance).state > 6000)
-      {
-        return 22.5;
-      }
-      else if(id(wv_resistance).state > 3500)
-      {
-        return 180;
-      }
-      else if(id(wv_resistance).state > 3000)
-      {
-        return 202.5;
-      }
-      else if(id(wv_resistance).state > 2000)
-      {
-        return 135;
-      }
-      else if(id(wv_resistance).state > 1300)
-      {
-        return 157.5;
-      }
-      else if(id(wv_resistance).state > 950)
-      {
-        return 90;
-      }
-      else if(id(wv_resistance).state > 800)
-      {
-        return 67.5;
-      }
-      else if(id(wv_resistance).state > 600)
-      {
-        return 112.5;
-      }
-      else
-      {
-        return -1;    //resistance too low
-      };
-
-  - platform: pulse_counter
-    pin: GPIO18
-    id: anemometer
-    icon: mdi:Wind
-    name: "Anemometer"
-  - platform: pulse_counter
-    pin: GPIO19
-    icon: mdi:Rain
-    id: rain
-    name: "Rain Gauge"
-
-binary_sensor:
-  - platform: gpio
-    pin: 
-      number: GPIO22
-      mode:
-        input: true
-    name: "Rain"
-    icon: mdi:weather-rainy
-    filters: 
-      - invert:           
-
-status_led:
-  pin:
-    number: GPIO25
-    id: onboard_led
-    inverted: false
+#i2c:
+#  sda: GPIO20
+#  scl: GPIO21
+#  scan: true
+#  id: bus_0
+#  frequency: 800kHz
+#  timeout: 10ms
+#
+#sensor:
+#  - platform: adc
+#    pin: TEMPERATURE
+#    name: "Core Temperature"
+#    unit_of_measurement: "°C"
+#    filters:
+#      - lambda: return 27 - (x - 0.706f) / 0.001721f;
+#
+#  - platform: bme280_i2c
+#    temperature:
+#      name: "BME280 Temperature"
+#    pressure:
+#      name: "BME280 Pressure"
+#    humidity:
+#      name: "BME280 Humidity"    
+#
+#  - platform: adc
+#    name: "Source for resistance"
+#    id: adc0
+#    pin: GPIO26
+#    update_interval: 10s
+#  - platform: resistance
+#    name: Resistance Sensor    
+#    id: wv_resistance    
+#    sensor: adc0
+#    configuration: DOWNSTREAM
+#    resistor: 10.0kOhm
+#  - platform: template
+#    icon: mdi:windsock
+#    name: "Wind Direction"
+#    update_interval: 10s
+#    id: wind_direction
+#    lambda: |-
+#      if (id(wv_resistance).state > 200000)
+#      {
+#        return -1;     //error state = probably disconnected
+#      }
+#      else if (id(wv_resistance).state > 90000)
+#      {
+#        return 270;
+#      }
+#      else if(id(wv_resistance).state > 55000)
+#      {
+#        return 315;
+#      }
+#      else if(id(wv_resistance).state > 40000)
+#      {
+#        return 292.5;
+#      }
+#      else if(id(wv_resistance).state > 30000)
+#      {
+#        return 0;
+#      }
+#      else if(id(wv_resistance).state > 20000)
+#      {
+#        return 337.5;
+#      }
+#      else if(id(wv_resistance).state > 15000)
+#      {
+#        return 225;
+#      }
+#      else if(id(wv_resistance).state > 10000)
+#      {
+#        return 247.5;
+#      }
+#      else if(id(wv_resistance).state > 8000)
+#      {
+#        return 45;
+#      }
+#      else if(id(wv_resistance).state > 6000)
+#      {
+#        return 22.5;
+#      }
+#      else if(id(wv_resistance).state > 3500)
+#      {
+#        return 180;
+#      }
+#      else if(id(wv_resistance).state > 3000)
+#      {
+#        return 202.5;
+#      }
+#      else if(id(wv_resistance).state > 2000)
+#      {
+#        return 135;
+#      }
+#      else if(id(wv_resistance).state > 1300)
+#      {
+#        return 157.5;
+#      }
+#      else if(id(wv_resistance).state > 950)
+#      {
+#        return 90;
+#      }
+#      else if(id(wv_resistance).state > 800)
+#      {
+#        return 67.5;
+#      }
+#      else if(id(wv_resistance).state > 600)
+#      {
+#        return 112.5;
+#      }
+#      else
+#      {
+#        return -1;    //resistance too low
+#      };
+#
+#  - platform: pulse_counter
+#    pin: GPIO18
+#    id: anemometer
+#    icon: mdi:Wind
+#    name: "Anemometer"
+#  - platform: pulse_counter
+#    pin: GPIO19
+#    icon: mdi:Rain
+#    id: rain
+#    name: "Rain Gauge"
+#
+#binary_sensor:
+#  - platform: gpio
+#    pin: 
+#      number: GPIO22
+#      mode:
+#        input: true
+#    name: "Rain"
+#    icon: mdi:weather-rainy
+#    filters: 
+#      - invert:           
+#
+#status_led:
+#  pin:
+#    number: GPIO25
+#    id: onboard_led
+#    inverted: false
