@@ -41,6 +41,14 @@ switch:
   - platform: gpio
     pin: GPIO26
     name: "Relay 4"
+  - platform: gpio
+    pin: GPIO17
+    id: remote_relay_1
+    name: "Remote Relay 1"
+  - platform: gpio
+    pin: GPIO04
+    id: remote_relay_2
+    name: "Remote Relay 2"    
 
 status_led:
   pin: GPIO23
