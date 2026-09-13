@@ -27,4 +27,5 @@ wifi:
     ssid: modbus Fallback Hotspot
     password: "9gsLQKx2JS9P"
 
+  use_address: 10.6.5.132
 captive_portal:
