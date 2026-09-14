@@ -63,7 +63,7 @@ sensor:
     id: wv_resistance    
     sensor: adc0
     configuration: DOWNSTREAM
-    resistor: 10.0kOhm
+    resistor: 100.0kOhm
   - platform: template
     icon: mdi:windsock
     name: "Wind Direction"
