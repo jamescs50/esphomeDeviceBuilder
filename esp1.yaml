@@ -1,0 +1,27 @@
+# Board: Generic ESP8285 Module (Espressif)
+# Definition: definitions/boards/esp8285/manifest.yaml
+
+esphome:
+  name: esp1
+  friendly_name: ESP1
+
+esp8266:
+  board: esp8285
+
+logger:
+
+api:
+  encryption:
+    key: "PgiDZbzWX26UAd9ibi4BCHXmWSItBoJOOkh8ZnSXsp4="
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: ESP1 Fallback Hotspot
+    password: "SoVqgHgG2iRa"
+
+captive_portal:
