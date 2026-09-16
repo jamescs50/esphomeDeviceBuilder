@@ -22,6 +22,5 @@ wifi:
   password: !secret wifi_password
   ap:
     ssid: ESP1 Fallback Hotspot
-    password: "SoVqgHgG2iRa"
-
+    password: !secret fallback_password
 captive_portal:
