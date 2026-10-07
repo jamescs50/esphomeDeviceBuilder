@@ -153,6 +153,7 @@ sensor:
     icon: mdi:Rain
     id: rain
     name: "Rain Gauge"
+    update_interval: 300s
 
 binary_sensor:
   - platform: gpio
