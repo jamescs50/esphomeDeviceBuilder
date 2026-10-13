@@ -27,3 +27,40 @@ wifi:
     ssid: RGB1 Fallback Hotspot
     password: !secret fallback_password
 captive_portal:
+
+output:
+    - platform: ledc
+      pin: 26
+      id: red_pin
+      frequency: 10000
+    - platform: ledc
+      pin: 25
+      id: green_pin
+      frequency: 10000
+    - platform: ledc
+      pin: 33
+      id: blue_pin
+      frequency: 10000
+    - platform: ledc
+      pin: 32
+      id: white_pin
+      frequency: 10000
+    
+      
+
+light:
+  - platform: rgbw
+    name: "rgbw1"
+
+    # 33
+    red: red_pin
+    # 32
+    green: green_pin
+    # 35
+    blue: blue_pin
+    # 34
+    white: white_pin
+    icon: "mdi:led-strip-variant"
+
+    
+  
