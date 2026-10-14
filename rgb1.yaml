@@ -33,20 +33,15 @@ output:
     - platform: ledc
       pin: 26
       id: red_pin
-      frequency: 10000
     - platform: ledc
       pin: 25
       id: green_pin
-      frequency: 10000
     - platform: ledc
       pin: 33
       id: blue_pin
-      frequency: 10000
     - platform: ledc
       pin: 32
-      id: white_pin
-      frequency: 1200
-      
+      id: white_pin     
 
 light:
   - platform: rgbw
