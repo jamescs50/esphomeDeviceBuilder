@@ -45,8 +45,7 @@ output:
     - platform: ledc
       pin: 32
       id: white_pin
-      frequency: 5000
-    
+      frequency: 1kHz
       
 
 light:
