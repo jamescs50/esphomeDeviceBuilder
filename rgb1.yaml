@@ -45,7 +45,7 @@ output:
     - platform: ledc
       pin: 32
       id: white_pin
-      frequency: 10000
+      frequency: 5000
     
       
 
