@@ -99,7 +99,22 @@ binary_sensor:
         input: true
         pullup: true
     name: "Level 1"
+    id: switch_heater_1
     device_class: connectivity
+    on_state_change:
+      then:
+        - if: 
+            condition:
+              binary_sensor.is_off: switch_heater_1
+            then:
+              select.set_index:
+                id: heater_state
+                index: 0
+            else: 
+              select.set_index:
+                id: heater_state
+                index: 1
+              
   - platform: gpio
     pin: 
       number: GPIO18
