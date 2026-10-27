@@ -105,7 +105,7 @@ binary_sensor:
       then:
         - if: 
             condition:
-              binary_sensor.is_off: switch_heater_1
+              binary_sensor.is_on: switch_heater_1
             then:
               select.set_index:
                 id: heater_state
