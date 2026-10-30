@@ -1,0 +1,29 @@
+# Board: Generic ESP32 Board (Generic)
+# Definition: definitions/boards/generic-esp32/manifest.yaml
+
+esphome:
+  name: devboard
+  friendly_name: devboard
+
+esp32:
+  variant: esp32
+  framework:
+    type: esp-idf
+
+logger:
+
+api:
+  encryption:
+    key: "iuKJ+Z05oCq+w4HECpDOptRmp8BPEHu4RGuL4VJdxUc="
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: devboard Fallback Hotspot
+    password: "D7JV8gZ1KBp6"
+
+captive_portal:
