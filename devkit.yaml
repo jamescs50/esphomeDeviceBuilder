@@ -64,12 +64,12 @@ switch:
 
 
 #
-#light:#
-#  - platform: monochromatic#
-#    name: "Display Backlight"#
-#    output: backlight_pwm#
-#    restore_mode: ALWAYS_ON#
-#  #
+light:
+  - platform: monochromatic
+    name: "Display Backlight"
+    output: backlight_pwm
+    restore_mode: ALWAYS_ON
+  
 font:
   - file: "gfonts://Roboto"
     id: font_title
