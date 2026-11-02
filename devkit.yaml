@@ -58,6 +58,8 @@ switch:
     pin: GPIO26
     id: relay_4
 
+
+
 light:
   - platform: monochromatic
     name: "Display Backlight"
