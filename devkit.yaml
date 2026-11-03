@@ -37,136 +37,145 @@ spi:
 i2c:
   sda: GPIO21
   scl: GPIO22
-
-# --- Backlight ---
-output:
-  - platform: ledc
-    pin: GPIO32
-    id: backlight_pwm
-
-switch:
-  - platform: gpio
-    pin: GPIO13
-    id: relay_1
-    name: "LED 1"
-  - platform: gpio
-    pin: GPIO12
-    id: relay_2
-    name: "LED 2"
-  - platform: gpio
-    pin: GPIO14
-    id: relay_3
-    name: "LED 3"
-  - platform: gpio
-    pin: GPIO26
-    id: relay_4
-    name: "LED 4"
-
-
-#
-light:
-  - platform: monochromatic
-    name: "Display Backlight"
-    output: backlight_pwm
-    restore_mode: ALWAYS_ON
-  
-font:
-  - file: "gfonts://Roboto"
-    id: font_title
-    size: 28
-  - file: "gfonts://Roboto"
-    id: font_btn
-    size: 24
+  scan: true    # prints found addresses in the log
 
 display:
-  - platform: mipi_spi
-    model: ST7796
-    id: tft
-    cs_pin: GPIO5
-    dc_pin: GPIO27
-    reset_pin: GPIO33
-    data_rate: 40MHz
-    dimensions:
-      width: 320
-      height: 480
-    buffer_size: 25%
-    update_interval: 1s
+  - platform: lcd_pcf8574
+    dimensions: 16x2      # or 20x4
+    address: 0x27         # see note below
     lambda: |-
-      it.fill(Color(0, 0, 0));
-      it.printf(160, 20, id(font_title), Color(255, 255, 255),
-                TextAlign::TOP_CENTER, "Relay Control");
+      it.print("Hello World!");
+      it.printf(0, 1, "Uptime: %d s", (int)(millis() / 1000));  
 
-      bool states[4] = {
-        id(relay_1).state, id(relay_2).state,
-        id(relay_3).state, id(relay_4).state
-      };
-      const char *names[4] = {"Relay 1", "Relay 2", "Relay 3", "Relay 4"};
-
-      for (int i = 0; i < 4; i++) {
-        int y = 70 + i * 100;
-        Color bg = states[i] ? Color(0, 150, 60) : Color(60, 60, 60);
-        it.filled_rectangle(20, y, 280, 85, bg);
-        it.rectangle(20, y, 280, 85, Color(255, 255, 255));
-        it.printf(160, y + 42, id(font_btn), Color(255, 255, 255),
-                  TextAlign::CENTER, "%s: %s", names[i],
-                  states[i] ? "ON" : "OFF");
-      }
-
-touchscreen:
-  - platform: ft63x6
-    id: tft_touch
-    display: tft
-    interrupt_pin: GPIO34
-    reset_pin: GPIO25
-    # If touches land in the wrong place, adjust these:
-    # transform:
-    #   swap_xy: false
-    #   mirror_x: false
-    #   mirror_y: false
-    # on_touch:
-    #   - lambda: ESP_LOGI("touch", "x=%d y=%d", touch.x, touch.y);
-
-binary_sensor:
-  - platform: touchscreen
-    touchscreen_id: tft_touch
-    id: btn_1
-    x_min: 20
-    x_max: 300
-    y_min: 70
-    y_max: 155
-    on_press:
-      - switch.toggle: relay_1
-      - component.update: tft
-
-  - platform: touchscreen
-    touchscreen_id: tft_touch
-    id: btn_2
-    x_min: 20
-    x_max: 300
-    y_min: 170
-    y_max: 255
-    on_press:
-      - switch.toggle: relay_2
-      - component.update: tft
-
-  - platform: touchscreen
-    touchscreen_id: tft_touch
-    id: btn_3
-    x_min: 20
-    x_max: 300
-    y_min: 270
-    y_max: 355
-    on_press:
-      - switch.toggle: relay_3
-      - component.update: tft
-
-  - platform: touchscreen
-    touchscreen_id: tft_touch
-    id: btn_4
-    x_min: 20
-    x_max: 300
-    y_min: 370
-    y_max: 455
-    on_press:
-      - switch.toggle: relay_4
-      - component.update: tft
+## --- Backlight ---
+#output:
+#  - platform: ledc
+#    pin: GPIO32
+#    id: backlight_pwm
+#
+#switch:
+#  - platform: gpio
+#    pin: GPIO13
+#    id: relay_1
+#    name: "LED 1"
+#  - platform: gpio
+#    pin: GPIO12
+#    id: relay_2
+#    name: "LED 2"
+#  - platform: gpio
+#    pin: GPIO14
+#    id: relay_3
+#    name: "LED 3"
+#  - platform: gpio
+#    pin: GPIO26
+#    id: relay_4
+#    name: "LED 4"
+#
+#
+##
+#light:
+#  - platform: monochromatic
+#    name: "Display Backlight"
+#    output: backlight_pwm
+#    restore_mode: ALWAYS_ON
+#  
+#font:
+#  - file: "gfonts://Roboto"
+#    id: font_title
+#    size: 28
+#  - file: "gfonts://Roboto"
+#    id: font_btn
+#    size: 24
+#
+#display:
+#  - platform: mipi_spi
+#    model: ST7796
+#    id: tft
+#    cs_pin: GPIO5
+#    dc_pin: GPIO27
+#    reset_pin: GPIO33
+#    data_rate: 40MHz
+#    dimensions:
+#      width: 320
+#      height: 480
+#    buffer_size: 25%
+#    update_interval: 1s
+#    lambda: |-
+#      it.fill(Color(0, 0, 0));
+#      it.printf(160, 20, id(font_title), Color(255, 255, 255),
+#                TextAlign::TOP_CENTER, "Relay Control");
+#
+#      bool states[4] = {
+#        id(relay_1).state, id(relay_2).state,
+#        id(relay_3).state, id(relay_4).state
+#      };
+#      const char *names[4] = {"Relay 1", "Relay 2", "Relay 3", "Relay 4"};
+#
+#      for (int i = 0; i < 4; i++) {
+#        int y = 70 + i * 100;
+#        Color bg = states[i] ? Color(0, 150, 60) : Color(60, 60, 60);
+#        it.filled_rectangle(20, y, 280, 85, bg);
+#        it.rectangle(20, y, 280, 85, Color(255, 255, 255));
+#        it.printf(160, y + 42, id(font_btn), Color(255, 255, 255),
+#                  TextAlign::CENTER, "%s: %s", names[i],
+#                  states[i] ? "ON" : "OFF");
+#      }
+#
+#touchscreen:
+#  - platform: ft63x6
+#    id: tft_touch
+#    display: tft
+#    interrupt_pin: GPIO34
+#    reset_pin: GPIO25
+#    # If touches land in the wrong place, adjust these:
+#    # transform:
+#    #   swap_xy: false
+#    #   mirror_x: false
+#    #   mirror_y: false
+#    # on_touch:
+#    #   - lambda: ESP_LOGI("touch", "x=%d y=%d", touch.x, touch.y);
+#
+#binary_sensor:
+#  - platform: touchscreen
+#    touchscreen_id: tft_touch
+#    id: btn_1
+#    x_min: 20
+#    x_max: 300
+#    y_min: 70
+#    y_max: 155
+#    on_press:
+#      - switch.toggle: relay_1
+#      - component.update: tft
+#
+#  - platform: touchscreen
+#    touchscreen_id: tft_touch
+#    id: btn_2
+#    x_min: 20
+#    x_max: 300
+#    y_min: 170
+#    y_max: 255
+#    on_press:
+#      - switch.toggle: relay_2
+#      - component.update: tft
+#
+#  - platform: touchscreen
+#    touchscreen_id: tft_touch
+#    id: btn_3
+#    x_min: 20
+#    x_max: 300
+#    y_min: 270
+#    y_max: 355
+#    on_press:
+#      - switch.toggle: relay_3
+#      - component.update: tft
+#
+#  - platform: touchscreen
+#    touchscreen_id: tft_touch
+#    id: btn_4
+#    x_min: 20
+#    x_max: 300
+#    y_min: 370
+#    y_max: 455
+#    on_press:
+#      - switch.toggle: relay_4
+#      - component.update: tft
