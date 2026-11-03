@@ -42,7 +42,7 @@ i2c:
 display:
   - platform: lcd_pcf8574
     dimensions: 16x2      # or 20x4
-    address: 0x27         # see note below
+    address: 0x20         # see note below
     lambda: |-
       it.print("Hello World!");
       it.printf(0, 1, "Uptime: %d s", (int)(millis() / 1000));  
