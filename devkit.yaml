@@ -30,9 +30,9 @@ wifi:
 captive_portal:
 
 
-spi:
-  clk_pin: GPIO18
-  mosi_pin: GPIO23
+#spi:
+#  clk_pin: GPIO18
+#  mosi_pin: GPIO23
 
 i2c:
   sda: GPIO21
