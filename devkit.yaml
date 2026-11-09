@@ -46,24 +46,20 @@ mcp3008:
 # See `resistance` and `ntc` platorms for other options
 sensor:
   - platform: mcp3008             # Attached to pin 0 of the MCP3008.
-    reference_voltage: 3.19
-    update_interval: 1s
+    reference_voltage: 3.3
+    #update_interval: 1h
     mcp3008_id: my_mcp
-    id: freezer_temp_source
+    id: channel_0
     number: 0                     # MCP3008 pin number
-  - platform: resistance
-    id: freezer_resistance_sensor
-    sensor: freezer_temp_source
-    configuration: DOWNSTREAM
-    resistor: 10kOhm
-  - platform: ntc
-    id: freezer_temp
-    sensor: freezer_resistance_sensor
-    calibration:
-      b_constant: 3950
-      reference_temperature: 25°C
-      reference_resistance: 10kOhm
-    name: Freezer Temperature  
+  - platform: mcp3008             # Attached to pin 0 of the MCP3008.
+    reference_voltage: 3.3
+    #update_interval: 1h
+    mcp3008_id: my_mcp
+    id: channel_1
+    number: 1                     # MCP3008 pin number
+
+
+    
 
 
 
