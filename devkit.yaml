@@ -52,13 +52,21 @@ sensor:
     id: channel_0
     number: 0                     # MCP3008 pin number
     name: Channel 0
-  - platform: mcp3008             # Attached to pin 0 of the MCP3008.
-    reference_voltage: 3.3
-    update_interval: 1s
-    mcp3008_id: my_mcp
-    id: channel_1
-    number: 1                     # MCP3008 pin number
-    name: Channel 1
+    filters:
+      # Convert voltage range (e.g., 2.32V to 3.46V) to a percentage (0% to 100%)
+      - calibrate_linear:
+          - 2.32 -> 0.0
+          - 3.46 -> 100.0
+    unit_of_measurement: "%"
+    accuracy_decimals: 1
+    
+#  - platform: mcp3008             # Attached to pin 0 of the MCP3008.
+#    reference_voltage: 3.3
+#    update_interval: 1s
+#    mcp3008_id: my_mcp
+#    id: channel_1
+#    number: 1                     # MCP3008 pin number
+#    name: Channel 1
 
 
     
