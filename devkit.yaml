@@ -47,7 +47,7 @@ mcp3008:
 sensor:
   - platform: mcp3008             # Attached to pin 0 of the MCP3008.
     reference_voltage: 3.3
-    update_interval: 1s
+    update_interval: 3h
     mcp3008_id: my_mcp
     id: channel_0
     number: 0                     # MCP3008 pin number
