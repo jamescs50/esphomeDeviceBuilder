@@ -55,7 +55,7 @@ sensor:
     filters:
       # Convert voltage range (e.g., 2.32V to 3.46V) to a percentage (0% to 100%)
       - calibrate_linear:
-          - 2.20 -> 0.0
+          - 2.22 -> 0.0
           - 0.9 -> 100.0
     unit_of_measurement: "%"
     accuracy_decimals: 1
