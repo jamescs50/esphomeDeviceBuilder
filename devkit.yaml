@@ -128,7 +128,7 @@ select:
             then:
               - light.turn_on:
                   id: led_strip
-                  brightness: 80%
+                  brightness: 50%
                   red: 100%
                   green: 100%
                   blue: 100%
