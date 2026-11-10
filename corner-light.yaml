@@ -25,20 +25,18 @@ wifi:
   ap:
     ssid: Corner-Light Fallback Hotspot
     password: !secret fallback_password
-captive_portal:
-    
 binary_sensor:
-  - platform: gpio
-    pin:
-      number: GPIO9
-      mode:
-        input: true
-        pullup: true
-      inverted: true
-    id: button_1
-    on_press:
-      then:
-        - light.toggle: light_1
+  - platform: esp32_touch
+    id: esp32_touch_pad
+    pin: GPIOXX
+    threshold: 0
+
+sensor:
+  - platform: template
+    name: "Raw touch value"
+    lambda: |-
+        return id(esp32_touch_pad).get_value();
+    update_interval: 3s
 
 output:
   - platform: gpio
