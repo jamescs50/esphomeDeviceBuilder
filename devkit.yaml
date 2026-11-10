@@ -29,36 +29,56 @@ wifi:
 
 captive_portal:
 
-spi:
-  clk_pin: GPIO18
-  mosi_pin: GPIO23
-  miso_pin: GPIO19
+#spi:
+#  clk_pin: GPIO18
+#  mosi_pin: GPIO23
+#  miso_pin: GPIO19
+
+#i2c:
+#  sda: GPIO21
+#  scl: GPIO22
+#  scan: true    # prints found addresses in the log
+#
+
+switch:
+  - platform: gpio
+    name: My Switch
+    id: my_switch
+    pin: GPIO17
+    
+light:
+  - platform: binary
+    name: Binary Light
+    id: light_binary_1
+    output: led_output
+  
 
 
-# Example configuration entry
-mcp3008:
-  cs_pin: GPIO5
-  id: my_mcp
+
+#region MCP3008
+#mcp3008:
+#  cs_pin: GPIO5
+#  id: my_mcp
 
 # Example config of sensors.
 # This is a NTCB3950 10K thermocoupler attached to pin 0
 # of the MCP3008 with a 10K resistor as a voltage divider.
 # See `resistance` and `ntc` platorms for other options
-sensor:
-  - platform: mcp3008             # Attached to pin 0 of the MCP3008.
-    reference_voltage: 3.3
-    update_interval: 3h
-    mcp3008_id: my_mcp
-    id: channel_0
-    number: 0                     # MCP3008 pin number
-    name: Channel 0
-    filters:
-      # Convert voltage range (e.g., 2.32V to 3.46V) to a percentage (0% to 100%)
-      - calibrate_linear:
-          - 2.22 -> 0.0
-          - 0.9 -> 100.0
-    unit_of_measurement: "%"
-    accuracy_decimals: 1
+#sensor:
+#  - platform: mcp3008             # Attached to pin 0 of the MCP3008.
+#    reference_voltage: 3.3
+#    update_interval: 3h
+#    mcp3008_id: my_mcp
+#    id: channel_0
+#    number: 0                     # MCP3008 pin number
+#    name: Channel 0
+#    filters:
+#      # Convert voltage range (e.g., 2.32V to 3.46V) to a percentage (0% to 100%)
+#      - calibrate_linear:
+#          - 2.22 -> 0.0
+#          - 0.9 -> 100.0
+#    unit_of_measurement: "%"
+#    accuracy_decimals: 1
     
 #  - platform: mcp3008             # Attached to pin 0 of the MCP3008.
 #    reference_voltage: 3.3
@@ -67,17 +87,9 @@ sensor:
 #    id: channel_1
 #    number: 1                     # MCP3008 pin number
 #    name: Channel 1
+#emdregion
 
-
-    
-
-
-
-#i2c:
-#  sda: GPIO21
-#  scl: GPIO22
-#  scan: true    # prints found addresses in the log
-#
+#region display
 #display:
 #  - platform: lcd_pcf8574
 #    dimensions: 16x2      # or 20x4
@@ -218,3 +230,10 @@ sensor:
 #    on_press:
 #      - switch.toggle: relay_4
 #      - component.update: tft
+
+#endregion
+
+output:
+  - platform: gpio
+    id: led_output
+    pin: GPIO16
