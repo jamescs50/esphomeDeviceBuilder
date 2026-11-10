@@ -51,12 +51,12 @@ light:
     name: Binary Light
     id: light_binary_1
     output: led_output
-#  - platform: esp32_rmt_led_strip
-#    channel_colors: GRB
-#    pin: GPIO33
-#    num_leds: 30
-#    chipset: ws2812
-#    name: "My Light"
+  - platform: esp32_rmt_led_strip
+    channel_colors: GRB
+    pin: GPIO33
+    num_leds: 30
+    chipset: ws2812
+    name: "LED Strip"
 
 
 output:
