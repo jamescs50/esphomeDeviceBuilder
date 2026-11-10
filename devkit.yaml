@@ -61,6 +61,7 @@ binary_sensor:
 #        pullup: true
 #      inverted: true
     id: button_1
+    name: pad
     on_press:
       then:
         - light.toggle: light_binary_1
