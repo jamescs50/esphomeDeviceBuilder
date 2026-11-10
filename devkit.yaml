@@ -52,6 +52,7 @@ light:
     id: light_binary_1
     output: led_output
   - platform: esp32_rmt_led_strip
+    id: led_strip
     channel_colors: GRB
     pin: GPIO33
     num_leds: 30
@@ -78,6 +79,61 @@ binary_sensor:
     on_press:
       then:
         - light.toggle: light_binary_1
+
+select:
+  - platform: template
+    name: "LED Strip Mode"
+    id: led_mode
+    optimistic: true
+    restore_value: true
+    initial_option: "Off"
+    options:
+      - "Off"
+      - "Soft"
+      - "Blue"
+      - "High"
+    on_value:
+      then:
+        - if:
+            condition:
+              lambda: 'return x == "Off";'
+            then:
+              - light.turn_off:
+                  id: led_strip
+                  transition_length: 500ms
+        - if:
+            condition:
+              lambda: 'return x == "Soft";'
+            then:
+              - light.turn_on:
+                  id: led_strip
+                  brightness: 30%
+                  red: 100%
+                  green: 60%
+                  blue: 25%
+                  transition_length: 500ms
+        - if:
+            condition:
+              lambda: 'return x == "Blue";'
+            then:
+              - light.turn_on:
+                  id: led_strip
+                  brightness: 50%
+                  red: 0%
+                  green: 0%
+                  blue: 100%
+                  transition_length: 500ms
+        - if:
+            condition:
+              lambda: 'return x == "High";'
+            then:
+              - light.turn_on:
+                  id: led_strip
+                  brightness: 100%
+                  red: 100%
+                  green: 100%
+                  blue: 100%
+                  transition_length: 500ms          
 
 
 
