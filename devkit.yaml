@@ -52,13 +52,20 @@ light:
     id: light_binary_1
     output: led_output
 
+
+output:
+  - platform: gpio
+    id: led_output
+    pin: GPIO5
+
+
 binary_sensor:
   - platform: gpio
     pin:
       number: GPIO17
       mode:
         input: true
-        pullup: true
+        pullup: false
       inverted: true
     id: button_1
     name: pad
@@ -247,7 +254,3 @@ binary_sensor:
 
 #endregion
 
-output:
-  - platform: gpio
-    id: led_output
-    pin: GPIO16
