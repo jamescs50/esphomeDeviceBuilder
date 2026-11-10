@@ -78,8 +78,7 @@ binary_sensor:
     name: pad
     on_press:
       then:
-        - light.toggle: light_binary_1
-
+        - select.next: led_mode
 select:
   - platform: template
     name: "LED Strip Mode"
