@@ -58,8 +58,8 @@ binary_sensor:
       number: GPIO17
       mode:
         input: true
-        pullup: true
-      inverted: true
+#        pullup: true
+#      inverted: true
     id: button_1
     on_press:
       then:
