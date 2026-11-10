@@ -40,17 +40,30 @@ captive_portal:
 #  scan: true    # prints found addresses in the log
 #
 
-switch:
-  - platform: gpio
-    name: My Switch
-    id: my_switch
-    pin: GPIO17
+#switch:
+#  - platform: gpio
+#    name: My Switch
+#    id: my_switch
+#    pin: GPIO17
     
 light:
   - platform: binary
     name: Binary Light
     id: light_binary_1
     output: led_output
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO17
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    id: button_1
+    on_press:
+      then:
+        - light.toggle: light_binary_1
   
 
 
