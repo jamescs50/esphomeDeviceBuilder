@@ -27,3 +27,128 @@ wifi:
     password: "8dWrvLzfoi8S"
 
 captive_portal:
+
+
+spi:
+  clk_pin: GPIO18
+  mosi_pin: GPIO23  
+  miso_pin: GPIO19
+
+
+mcp3008:
+  cs_pin: GPIO5
+  id: my_mcp
+
+sensor:
+  - platform: mcp3008             # Attached to pin 0 of the MCP3008.
+    reference_voltage: 3.3
+    update_interval: 3h
+    mcp3008_id: my_mcp
+    id: channel_0
+    number: 0                     # MCP3008 pin number
+    name: Channel 0
+    filters:
+      # Convert voltage range (e.g., 2.32V to 3.46V) to a percentage (0% to 100%)
+      - calibrate_linear:
+          - 2.22 -> 0.0
+          - 0.9 -> 100.0
+    unit_of_measurement: "%"
+    accuracy_decimals: 1
+  - platform: mcp3008             # Attached to pin 0 of the MCP3008.
+    reference_voltage: 3.3
+    update_interval: 3h
+    mcp3008_id: my_mcp
+    id: channel_1
+    number: 1                     # MCP3008 pin number
+    name: Channel 1
+    filters:
+      # Convert voltage range (e.g., 2.32V to 3.46V) to a percentage (0% to 100%)
+      - calibrate_linear:
+          - 2.22 -> 0.0
+          - 0.9 -> 100.0
+    unit_of_measurement: "%"
+    accuracy_decimals: 1
+  - platform: mcp3008             # Attached to pin 0 of the MCP3008.
+    reference_voltage: 3.3
+    update_interval: 3h
+    mcp3008_id: my_mcp
+    id: channel_2
+    number: 2                     # MCP3008 pin number
+    name: Channel 2
+    filters:
+      # Convert voltage range (e.g., 2.32V to 3.46V) to a percentage (0% to 100%)
+      - calibrate_linear:
+          - 2.22 -> 0.0
+          - 0.9 -> 100.0
+    unit_of_measurement: "%"
+    accuracy_decimals: 1
+  - platform: mcp3008             # Attached to pin 0 of the MCP3008.
+    reference_voltage: 3.3
+    update_interval: 3h
+    mcp3008_id: my_mcp
+    id: channel_3
+    number: 3                     # MCP3008 pin number
+    name: Channel 3
+    filters:
+      # Convert voltage range (e.g., 2.32V to 3.46V) to a percentage (0% to 100%)
+      - calibrate_linear:
+          - 2.22 -> 0.0
+          - 0.9 -> 100.0
+    unit_of_measurement: "%"
+    accuracy_decimals: 1
+  - platform: mcp3008             # Attached to pin 0 of the MCP3008.
+    reference_voltage: 3.3
+    update_interval: 3h
+    mcp3008_id: my_mcp
+    id: channel_4
+    number: 4                     # MCP3008 pin number
+    name: Channel 4
+    filters:
+      # Convert voltage range (e.g., 2.32V to 3.46V) to a percentage (0% to 100%)
+      - calibrate_linear:
+          - 2.22 -> 0.0
+          - 0.9 -> 100.0
+    unit_of_measurement: "%"
+    accuracy_decimals: 1
+  - platform: mcp3008             # Attached to pin 0 of the MCP3008.
+    reference_voltage: 3.3
+    update_interval: 3h
+    mcp3008_id: my_mcp
+    id: channel_5
+    number: 5                     # MCP3008 pin number
+    name: Channel 5
+    filters:
+      # Convert voltage range (e.g., 2.32V to 3.46V) to a percentage (0% to 100%)
+      - calibrate_linear:
+          - 2.22 -> 0.0
+          - 0.9 -> 100.0
+    unit_of_measurement: "%"
+    accuracy_decimals: 1
+  - platform: mcp3008             # Attached to pin 0 of the MCP3008.
+    reference_voltage: 3.3
+    update_interval: 3h
+    mcp3008_id: my_mcp
+    id: channel_6
+    number: 6                     # MCP3008 pin number
+    name: Channel 6
+    filters:
+      # Convert voltage range (e.g., 2.32V to 3.46V) to a percentage (0% to 100%)
+      - calibrate_linear:
+          - 2.22 -> 0.0
+          - 0.9 -> 100.0
+    unit_of_measurement: "%"
+    accuracy_decimals: 1
+  - platform: mcp3008             # Attached to pin 0 of the MCP3008.
+    reference_voltage: 3.3
+    update_interval: 3h
+    mcp3008_id: my_mcp
+    id: channel_7
+    number: 7                     # MCP3008 pin number
+    name: Channel 7
+    filters:
+      # Convert voltage range (e.g., 2.32V to 3.46V) to a percentage (0% to 100%)
+      - calibrate_linear:
+          - 2.22 -> 0.0
+          - 0.9 -> 100.0
+    unit_of_measurement: "%"
+    accuracy_decimals: 1
