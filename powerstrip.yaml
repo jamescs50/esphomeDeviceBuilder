@@ -1,0 +1,27 @@
+# Board: Generic - BK7231N (Tuya QFN32)
+# Definition: definitions/boards/generic-bk7231n-qfn32-tuya/manifest.yaml
+
+esphome:
+  name: powerstrip
+  friendly_name: Powerstrip
+
+bk72xx:
+  board: generic-bk7231n-qfn32-tuya
+
+logger:
+
+api:
+  encryption:
+    key: "0cbxatx0h8gorpFd/K6pDmAgW/+GerbqQWhovqEcnHI="
+
+ota:
+  - platform: esphome
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  ap:
+    ssid: Powerstrip Fallback Hotspot
+    password: "tQyJJGaN6TKk"
+
+captive_portal:
