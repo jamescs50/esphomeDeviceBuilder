@@ -6,9 +6,10 @@ esphome:
   friendly_name: Powerstrip
 
 bk72xx:
-  board: generic-bk7231n-qfn32-tuya
+  board: cbu
 
 logger:
+  level: INFO
 
 api:
   encryption:
@@ -22,6 +23,47 @@ wifi:
   password: !secret wifi_password
   ap:
     ssid: Powerstrip Fallback Hotspot
-    password: "tQyJJGaN6TKk"
+    password: !secret fallback_password
 
 captive_portal:
+
+# --- Replace the pins below with your real ones ---
+switch:
+  - platform: gpio
+    name: "Socket 1"
+    id: relay1
+    pin: P8
+  - platform: gpio
+    name: "Socket 2"
+    id: relay2
+    pin: P23
+  - platform: gpio
+    name: "Socket 3"
+    id: relay3
+    pin: P7
+
+binary_sensor:
+  - platform: gpio
+    name: "Button"
+    pin:
+      number: P9
+      mode: INPUT_PULLUP
+      inverted: true
+    on_press:
+      - switch.toggle: relay1
+
+status_led:
+  pin:
+    number: P20
+    inverted: true
+
+# If the strip has power monitoring (often a BL0937/HLW8012-type chip):
+# sensor:
+#   - platform: hlw8012
+#     model: BL0937
+#     sel_pin: P?
+#     cf_pin: P?
+#     cf1_pin: P?
+#     voltage: { name: "Voltage" }
+#     current: { name: "Current" }
+#     power:   { name: "Power" }
