@@ -41,31 +41,66 @@ switch:
     name: "Socket 3"
     id: relay3
     pin: P8
-  - platform: gpio
-    name: "Socket 4"
-    id: relay4
-    pin: P22
+#  - platform: gpio
+#    name: "Socket 4"
+#    id: relay4
+#    pin: P22
   - platform: gpio
     name: "USB Socket"
     id: relay5
     pin: P26
+  - platform: gpio
+    name: "Test 1"
+    id: test1
+    pin: P28
+  - platform: gpio
+    name: "Test 2"
+    id: rtest2
+    pin: P10
+  - platform: gpio
+    name: "Test 3"
+    id: test3
+    pin: P11
+  - platform: gpio
+    name: "Test 4"
+    id: test4
+    pin: P1
 
-#not 23,  24   
+#not 23,  24   P22
 
 binary_sensor:
   - platform: gpio
     name: "Button"
     pin:
-      number: P15  #not P9 or P28 P17
+      number: P14  #not P9 or P28 P17 P15
       mode: INPUT_PULLUP
       inverted: true
-    on_press:
-      - switch.toggle: relay1
+#    on_press:
+#      - switch.toggle: relay1
+  - platform: gpio
+    name: "Button2"
+    pin:
+      number: P16  
+      mode: INPUT_PULLUP
+      inverted: true
+  - platform: gpio
+    name: "Button3"
+    pin:
+      number: P20  #not P9 or P28 P17
+      mode: INPUT_PULLUP
+      inverted: true
+  - platform: gpio
+    name: "Button4"
+    pin:
+      number: P22  #not P9 or P28 P17
+      mode: INPUT_PULLUP
+      inverted: true
 
-status_led:
-  pin:
-    number: P20
-    inverted: true
+      
+#status_led:
+#  pin:
+#    number: P20
+#    inverted: true
 
 # If the strip has power monitoring (often a BL0937/HLW8012-type chip):
 # sensor:
