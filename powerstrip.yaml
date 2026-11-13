@@ -53,6 +53,7 @@ switch:
 
 #not 23,  24   P22, P26, 28, 10, 11, 1, 14, 16, 20, 15
 
+
 binary_sensor:
   - platform: gpio
     name: "Button"
@@ -71,6 +72,7 @@ status_led:
   pin:
     number: P20
     inverted: true
+
 
 # If the strip has power monitoring (often a BL0937/HLW8012-type chip):
 # sensor:
