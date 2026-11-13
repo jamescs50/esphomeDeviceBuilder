@@ -51,8 +51,6 @@ switch:
     pin: P26
     restore_mode: ALWAYS_ON
 
-#not 23,  24   P22, P26, 28, 10, 11, 1, 14, 16, 20, 15
-
 
 binary_sensor:
   - platform: gpio
@@ -73,14 +71,3 @@ status_led:
     number: P20
     inverted: true
 
-
-# If the strip has power monitoring (often a BL0937/HLW8012-type chip):
-# sensor:
-#   - platform: hlw8012
-#     model: BL0937
-#     sel_pin: P?
-#     cf_pin: P?
-#     cf1_pin: P?
-#     voltage: { name: "Voltage" }
-#     current: { name: "Current" }
-#     power:   { name: "Power" }
