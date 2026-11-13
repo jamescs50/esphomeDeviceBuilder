@@ -50,7 +50,7 @@ binary_sensor:
   - platform: gpio
     name: "Button"
     pin:
-      number: P9
+      number: P28
       mode: INPUT_PULLUP
       inverted: true
     on_press:
