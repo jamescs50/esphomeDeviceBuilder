@@ -44,19 +44,19 @@ switch:
   - platform: gpio
     name: "Socket 4"
     id: relay4
-    pin: P24
+    pin: P22
   - platform: gpio
     name: "USB Socket"
     id: relay5
     pin: P26
 
-#not 23,     
+#not 23,  24   
 
 binary_sensor:
   - platform: gpio
     name: "Button"
     pin:
-      number: P17  #not P9 or P28
+      number: P15  #not P9 or P28 P17
       mode: INPUT_PULLUP
       inverted: true
     on_press:
