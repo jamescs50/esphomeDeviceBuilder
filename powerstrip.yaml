@@ -32,7 +32,7 @@ switch:
   - platform: gpio
     name: "Socket 1"
     id: relay1
-    pin: P8
+    pin: P6
   - platform: gpio
     name: "Socket 2"
     id: relay2
@@ -40,17 +40,23 @@ switch:
   - platform: gpio
     name: "Socket 3"
     id: relay3
-    pin: P6
+    pin: P8
   - platform: gpio
     name: "Socket 4"
     id: relay4
+    pin: P24
+  - platform: gpio
+    name: "USB Socket"
+    id: relay5
     pin: P26
+
+#not 23,     
 
 binary_sensor:
   - platform: gpio
     name: "Button"
     pin:
-      number: P28
+      number: P17  #not P9 or P28
       mode: INPUT_PULLUP
       inverted: true
     on_press:
