@@ -52,21 +52,21 @@ switch:
   - platform: gpio
     name: "Test 1"
     id: test1
-    pin: P14
+    pin: P17
   - platform: gpio
     name: "Test 2"
     id: rtest2
-    pin: P16
+    pin: P9
   - platform: gpio
     name: "Test 3"
     id: test3
-    pin: P20
+    pin: P28
   - platform: gpio
     name: "Test 4"
     id: test4
-    pin: P15
+    pin: P10
 
-#not 23,  24   P22, P26, 28, 10, 11, 1
+#not 23,  24   P22, P26, 28, 10, 11, 1, 14, 16, 20, 15
 
 binary_sensor:
   - platform: gpio
