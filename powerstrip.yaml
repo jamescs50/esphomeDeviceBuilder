@@ -36,11 +36,15 @@ switch:
   - platform: gpio
     name: "Socket 2"
     id: relay2
-    pin: P23
+    pin: P7
   - platform: gpio
     name: "Socket 3"
     id: relay3
-    pin: P7
+    pin: P6
+  - platform: gpio
+    name: "Socket 4"
+    id: relay4
+    pin: P26
 
 binary_sensor:
   - platform: gpio
