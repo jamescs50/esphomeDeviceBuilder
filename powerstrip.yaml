@@ -59,8 +59,11 @@ binary_sensor:
       number: P22
       mode: INPUT_PULLUP
       inverted: true
-#    on_press:
-#      - switch.toggle: relay1
+    on_press:
+      - switch.toggle: relay1
+      - switch.toggle: relay2
+      - switch.toggle: relay3
+      - switch.toggle: relay4
 
       
 #status_led:
